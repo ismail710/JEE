@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter une Action</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Ajouter une Nouvelle Action</h1>
+
+    <!-- Affichage des messages d'erreur -->
+    <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+    <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
+
+    <form action="addAction" method="post" class="mt-4">
+
+        <div class="mb-3">
+            <label for="titre" class="form-label">Titre de l'Action</label>
+            <input type="text" class="form-control" id="titre" name="titre" placeholder="Entrez le titre" required aria-label="Titre de l'action">
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Entrez la description" required aria-label="Description de l'action"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="montant" class="form-label">Montant Collecté</label>
+            <input type="number" class="form-control" id="montant" name="montant" placeholder="Entrez le montant" required aria-label="Montant collecté">
+        </div>
+
+        <div class="mb-3">
+            <label for="etat" class="form-label">État</label>
+            <select class="form-select" id="etat" name="etat" required aria-label="État de l'action">
+                <option value="">Choisissez un état</option>
+                <option value="PREPARATION">Préparation</option>
+                <option value="OUVERTE">Ouverte</option>
+                <option value="SUSPENDUE">Suspendue</option>
+                <option value="TERMINEE">Terminée</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Organisateur :</label>
+            <select
+                    name="orga_id"
+            id="organisateur-id"
+            class="form-select"
+            required aria-label="Organisateur">
+            <option value="" disabled selected>Sélectionnez un organisateur</option>
+            <option
+                    th:each="organisateur : ${organisateurs}"
+                    th:value="${organisateur.getId()}"
+                    th:text="${organisateur.getNom()}">
+            </option>
+            </select>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Ajouter l'Action</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
