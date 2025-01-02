@@ -9,4 +9,6 @@ public interface IActionService {
     public ActionDto addAction(ActionDto action);
     public List<DonDto>  getDons(Long id);
     public  List <ActionDto> getAllActions();
+    public double getMontantTotal( Long id );
+    public double getMontantACollecter(Long id);
 }
