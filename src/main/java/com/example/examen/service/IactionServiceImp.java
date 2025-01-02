@@ -37,4 +37,16 @@ public class IactionServiceImp implements IActionService{
         List<Action> actions= actionRepository.findAll();
         return actions.stream().map(actionMapper::ActiontoActionDto).collect(Collectors.toList());
     }
+     @Override
+    public double getMontantTotal(Long actionId) {
+        List<DonDto> dons = getDons(actionId); // Méthode existante pour récupérer les dons
+        return dons.stream()
+                .mapToDouble(DonDto::getMontant) // Supposez que `DonDto` a un getter `getMontant()`
+                .sum();
+    }
+    @Override
+    public double getMontantACollecter(Long actionId) {
+        return actionRepository.findById(actionId).get().getMontantCollecte();
+    }
+
 }
