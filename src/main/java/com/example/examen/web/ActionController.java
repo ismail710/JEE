@@ -39,8 +39,12 @@ public class ActionController {
     @GetMapping("/listDons")
     public String listDons(Model model, @RequestParam (name="id") Long id){
         List<DonDto> dons= actionService.getDons(id);
+        double montantTotal = actionService.getMontantTotal(id);
+        double montantACollecter = actionService.getMontantACollecter(id); // Récupérez ce montant depuis votre service ou dépôt
 
-        model.addAttribute("dons",dons);
+        model.addAttribute("dons", dons);
+        model.addAttribute("montantTotal", montantTotal);
+        model.addAttribute("montantACollecter", montantACollecter);
         return "/listDons";
 
     }
