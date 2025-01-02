@@ -26,6 +26,13 @@
         </tr>
         </tbody>
     </table>
+    <div class="mt-4">
+        <h4
+                th:class="${montantTotal < montantACollecter} ? 'text-danger' : 'text-success'">
+            Montant total des dons : <span th:text="${montantTotal}"></span> €
+        </h4>
+        <p>Montant à collecter : <span th:text="${montantACollecter}"></span> €</p>
+    </div>
 </div>
 </body>
 </html>
